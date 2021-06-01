@@ -1,4 +1,4 @@
-exports.handler = (event, context) => {
+exports.handler = context => {
   if (context.clientContext.user) {
     return {
       body: JSON.stringify({
