@@ -1,0 +1,43 @@
+.header {
+  width: 80%;
+  height: 50px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  width: 200px;
+  height: 30px;
+  outline: none;
+  border: none;
+  background-color: rgb(123, 235, 138);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+
+.a {
+  width: 100px;
+  height: 30px;
+  outline: none;
+  border: none;
+  background-color: rgb(218, 71, 71);
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.navigation {
+  display: flex;
+  width: 20%;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+.active {
+  text-decoration: underline;
+  color: blue;
+}
