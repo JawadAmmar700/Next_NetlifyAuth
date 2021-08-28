@@ -1,11 +1,13 @@
-import React from 'react'
-import Header from '../components/Header'
-import { useStateValue } from '../Store'
-import styles from '../styles/Home.module.css'
+import React from "react"
+import Header from "../components/Header"
+import { useStateValue } from "../Store"
+import styles from "../styles/Home.module.css"
+import { useRouter } from "next/router"
 
 const ViewContent = () => {
   const [{ user }, dispatch] = useStateValue()
-
+  const router = useRouter()
+  if (!user) router.push("/")
   return (
     <div>
       <Header />
@@ -15,9 +17,8 @@ const ViewContent = () => {
         className={styles.img}
       />
       <p className={styles.content}>
-        {user
-          ? "Netlify's Identity service is a plug-and-play microservice for handling site functionalities like signups, logins, password recovery, user metadata, and roles. You can use it from single page apps instead of rolling your own, and integrate with any service that understands JSON Web Tokens (JWTs)."
-          : 'Sign In to View this Page content'}
+        {user &&
+          "Netlify's Identity service is a plug-and-play microservice for handling site functionalities like signups, logins, password recovery, user metadata, and roles. You can use it from single page apps instead of rolling your own, and integrate with any service that understands JSON Web Tokens (JWTs)."}
       </p>
     </div>
   )

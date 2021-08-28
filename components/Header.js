@@ -1,25 +1,26 @@
-import React, { useEffect } from 'react'
-import { useStateValue } from '../Store'
-import netlifyIdentity from 'netlify-identity-widget'
-import Link from 'next/link'
-import styles from '../styles/Header.module.css'
+import React, { useEffect } from "react"
+import { useStateValue } from "../Store"
+import netlifyIdentity from "netlify-identity-widget"
+import Link from "next/link"
+import styles from "../styles/Header.module.css"
 
 const Header = () => {
   const [{ user }, dispatch] = useStateValue()
 
   useEffect(() => {
-    netlifyIdentity.on('login', user => {
-      dispatch({ type: 'Add_User', auth: user })
+    netlifyIdentity.on("login", user => {
+      dispatch({ type: "Add_User", auth: user })
+      netlifyIdentity.close()
     })
-    netlifyIdentity.on('logout', () => {
-      dispatch({ type: 'Remove', auth: null })
+    netlifyIdentity.on("logout", () => {
+      dispatch({ type: "Remove", auth: null })
       netlifyIdentity.close()
     })
     netlifyIdentity.init()
 
     return () => {
-      netlifyIdentity.off('login')
-      netlifyIdentity.off('logout')
+      netlifyIdentity.off("login")
+      netlifyIdentity.off("logout")
     }
   }, [])
 
@@ -32,12 +33,12 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
-      <h1>Welcome {user ? user.user_metadata.full_name : 'Guest'}</h1>
+      <h1>Welcome {user ? user.user_metadata.full_name : "Guest"}</h1>
       <div className={styles.navigation}>
         <Link href="/">
           <p>Home</p>
         </Link>
-        <Link href="/ViewContent">
+        <Link href={user ? "/ViewContent" : "/404"}>
           <p>View Content</p>
         </Link>
       </div>
