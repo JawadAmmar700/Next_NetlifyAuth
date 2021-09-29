@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Header from "../components/Header"
 import { useStateValue } from "../Store"
 import styles from "../styles/Home.module.css"
@@ -7,7 +7,9 @@ import { useRouter } from "next/router"
 const ViewContent = () => {
   const [{ user }, dispatch] = useStateValue()
   const router = useRouter()
-  if (!user) router.push("/")
+  useEffect(() => {
+    if (!user) router.push("/")
+  }, [])
   return (
     <div>
       <Header />
